@@ -30,6 +30,8 @@
     <table schema="" tableName="rad_admin" >
     </table>        
     <table schema="" tableName="rad_online" >
-    </table>      
+    </table>     
+    <table schema="" tableName="rad_option" >
+    </table>   
   </context>
 </generatorConfiguration>

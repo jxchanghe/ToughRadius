@@ -36,6 +36,7 @@ import org.apache.commons.logging.LogFactory;
 import org.toughradius.annotation.AuthAdmin;
 import org.toughradius.common.Config;
 import org.toughradius.components.BaseService;
+import org.toughradius.components.CacheService;
 import org.toughradius.components.Freemarker;
 import org.toughradius.components.StatService;
 import org.toughradius.components.UserService;
@@ -52,6 +53,7 @@ public abstract class FliterAction implements IHttpRequestHandler{
 	protected BaseService baseServ;
 	protected UserService userServ;
 	protected StatService statServ;
+	protected CacheService cacheServ;
 	public void setFreemaker(Freemarker freemaker) {
 		this.freemaker = freemaker;
 	}
@@ -73,6 +75,10 @@ public abstract class FliterAction implements IHttpRequestHandler{
     {
         this.config = config;
     }
+    public void setCacheServ(CacheService cacheServ) {
+        this.cacheServ = cacheServ;
+    }
+    
 	public void onRequest(IHttpExchange http) throws IOException,BadMessageException {
 
 		IHttpRequest req = http.getRequest();

@@ -48,6 +48,7 @@ import org.toughradius.data.RadClientMapper;
 import org.toughradius.data.RadGroupMapper;
 import org.toughradius.data.RadGroupMetaMapper;
 import org.toughradius.data.RadOnlineMapper;
+import org.toughradius.data.RadOptionMapper;
 import org.toughradius.data.RadUserMapper;
 import org.toughradius.data.RadUserMetaMapper;
 
@@ -91,6 +92,7 @@ public class DBService implements Startable
             configuration.addMapper(RadClientMapper.class);
             configuration.addMapper(RadAdminMapper.class);
             configuration.addMapper(RadOnlineMapper.class);
+            configuration.addMapper(RadOptionMapper.class);
             
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
             log.info("database init done !");

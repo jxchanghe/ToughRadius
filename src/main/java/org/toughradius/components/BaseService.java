@@ -36,8 +36,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.toughradius.annotation.Inject;
 import org.toughradius.data.RadAdminMapper;
 import org.toughradius.data.RadClientMapper;
+import org.toughradius.data.RadOptionMapper;
 import org.toughradius.model.RadAdmin;
 import org.toughradius.model.RadClient;
+import org.toughradius.model.RadOption;
 @Inject
 public class BaseService
 {
@@ -48,6 +50,65 @@ public class BaseService
     {
         this.dbservice = dbservice;
     }
+    
+    /**
+     * 查询单个选项
+     * @param optionName
+     * @return
+     */
+    public RadOption getOption(String optionName)
+    {
+        SqlSession session = dbservice.openSession();
+        try
+        {
+            RadOptionMapper mapper = session.getMapper(RadOptionMapper.class);
+            RadOption ro = mapper.selectByPrimaryKey(optionName);
+            return ro;
+        }
+        finally
+        {
+            session.close();
+        }
+    }
+    
+    /**
+     * 查询选项集合
+     * @return
+     */
+    public List<RadOption> getOptions()
+    {
+        SqlSession session = dbservice.openSession();
+        try
+        {
+            RadOptionMapper mapper = session.getMapper(RadOptionMapper.class);
+            List<RadOption> ros = mapper.selectByExample(null);
+            return ros;
+        }
+        finally
+        {
+            session.close();
+        }
+    }
+    
+    /**
+     * 更新选项
+     * @param option
+     */
+    public void updateOption(RadOption option)
+    {
+        SqlSession session = dbservice.openSession();
+        try
+        {
+            RadOptionMapper mapper = session.getMapper(RadOptionMapper.class);
+            mapper.updateByPrimaryKey(option);
+            session.commit();
+        }
+        finally
+        {
+            session.close();
+        }
+    }
+    
     /**
      * 查询单个客户端
      * @param address

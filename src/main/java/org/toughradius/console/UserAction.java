@@ -29,14 +29,18 @@
 package org.toughradius.console;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.toughradius.annotation.AuthAdmin;
+import org.toughradius.common.DateTimeUtil;
+import org.toughradius.common.ExportUtil;
 import org.toughradius.common.ValidateUtil;
 import org.toughradius.constant.Constant;
+import org.toughradius.constant.OptionNames;
 import org.toughradius.model.RadGroup;
-import org.toughradius.model.RadGroupMeta;
+import org.toughradius.model.RadOption;
 import org.toughradius.model.RadUser;
 import org.toughradius.model.RadUserExample;
 import org.toughradius.model.RadUserExample.Criteria;
@@ -74,6 +78,72 @@ public class UserAction extends FliterAction{
 	    request.setAttribute("users", users);
 		http.send(freemaker.render(http, "user"));
 	}
+	
+    /**
+     * 导出用户集合
+     */
+    public void export(IHttpExchange http) throws IOException,BadMessageException {
+        IHttpRequest request = http.getRequest();
+        String userName = request.getParameter("userName");
+        String groupName = request.getParameter("groupName");
+        
+        RadUserExample example = new RadUserExample();
+        Criteria query = example.createCriteria();
+        if(!ValidateUtil.isEmpty(userName))
+        {
+            query.andUserNameLike("%"+userName+"%");
+        }
+        if(!ValidateUtil.isEmpty(groupName))
+        {
+            query.andGroupNameEqualTo(groupName);
+        }
+
+        String[] attrs = null;
+        RadOption uattrs = baseServ.getOption(OptionNames.USER_EXPORT_ATTRS.value());
+        if(uattrs!=null&&!ValidateUtil.isEmpty(uattrs.getOptionValue()))
+        {
+            attrs = uattrs.getOptionValue().split(",");
+        }
+        
+        int attrsLen = attrs!=null?attrs.length:0;
+        String[] header = new String[3+attrsLen];
+        int[] widths = new int[header.length];
+        header[0] = "用户名";
+        header[1] = "用户密码";
+        header[2] = "用户组";
+        widths[0] = 15;
+        widths[1] = 15;
+        widths[2] = 15;
+        
+        for (int i = 0; i < attrsLen; i++) {
+            header[3+i] = attrs[i];
+            widths[3+i] = 15;
+        }
+        
+
+        List<String[]> dataList = new ArrayList<String[]>();
+        List<RadUser> users = cacheServ.getUsers();
+        for (RadUser user : users) {
+            String[] uarray = new String[header.length];
+            uarray[0] = user.getUserName();
+            uarray[1] = user.getPassword();
+            uarray[2] = user.getGroupName();
+            
+            for (int i = 0; i < attrsLen; i++) {
+                uarray[3+i] = cacheServ.getUserMeta(user.getUserName(), attrs[i]).getValue();
+            }
+            dataList.add(uarray);
+        }
+        String title = "用户数据-" + DateTimeUtil.getDateString();
+        String footer = "导出数据时间："+DateTimeUtil.getDateTimeString()+"   导出用户总数："+dataList.size();
+        String fileName = title + ".xls";
+        try {
+            ExportUtil.exportExcel(http, fileName, title, header, widths, dataList, footer);
+        } catch (Exception e) {
+            http.send(freemaker.renderWithAlert(http, "error", "用户数据导出失败,"+e.getMessage()));
+        }
+        
+    }
 	
 	/**
 	 * 新增用户表单

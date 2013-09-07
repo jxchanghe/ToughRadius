@@ -1,3 +1,11 @@
+create table RAD_OPTION
+(
+    OPTION_NAME VARCHAR(255) NOT NULL,
+    OPTION_VALUE VARCHAR(512) NOT NULL,
+    OPTION_DESC VARCHAR(255) NOT NULL
+);
+alter table RAD_OPTION add constraint PK_RAD_OPTION primary key (OPTION_NAME);
+
 create table RAD_USER
 (
     USER_NAME VARCHAR(64) NOT NULL,

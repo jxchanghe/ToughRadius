@@ -9,6 +9,12 @@
 	        window.location.href = "/user?op=delete&userName="+userName;
 	    }
    }
+   function exportUser()
+   {
+      var userName = $("#userName").val();
+      var groupName = $("#groupName").val();
+      window.location.href = "/user?op=export&userName="+userName+"&groupName="+groupName;
+   }
    </script>   
   </head>
   <body>
@@ -33,6 +39,7 @@
 									</#list>
 								</select>
 					  <button type="submit" class="btn">查询</button>
+					   <a class="btn" onclick="exportUser();">导出</a>
 					</form>
 					<table class="table table-striped ">
 					  <thead>
