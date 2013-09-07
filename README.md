@@ -80,6 +80,11 @@ windows环境请执行：startup.bat
 
 @jamiesun  欢迎更多的开发者加入。
 
+### 问题反馈
+
+您在使用本软件的过程中遇到问题，可以通过电子邮件反馈 jamiesun.net@gmail.com
+
+ToughRadius也为提供更简单的咨询讨论渠道，您可加入我们的技术QQ群：247860313
 
 ### 技术支持
 
