@@ -3,9 +3,11 @@ ToughRadius
 
 ### 最新发布
 
-[ToughRadiusV1.0-build2013090701](http://pan.baidu.com/share/link?uk=604278103&shareid=1758865663)
+[ToughRadiusV1.0 Bate](http://pan.baidu.com/share/link?uk=604278103&shareid=1758865663)
 
-ToughRadius首个beta版本,已经具备了基本的认证计费功能,支持ros,h3c,huawei设备接入,只需要扩展字典便可支持更多接入类型,支持用户过期策略,时段策略,绑定MAC策略,并发数控制等策略,支持预付费包月和计时资费.
+ToughRadius首个beta版本发布,已经具备了基本的认证计费功能,支持ros,h3c,huawei设备接入,只需要扩展字典便可支持更多接入类型,支持用户过期策略,时段策略,绑定MAC策略,并发数控制等策略,支持预付费包月和计时资费.
+
+注意，当前版本仅提供测试用，不建议在生产环境中使用。
 
 后续版本规划,保证核心版本的精简,通过模块接口扩展来实现更丰富的业务功能.
 
