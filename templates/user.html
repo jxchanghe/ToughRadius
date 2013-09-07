@@ -34,6 +34,7 @@
 					  <input type="text" class="span2" id="userName" name="userName" value="${param_userName!!}" placeholder="支持模糊查询">
 					  <label class="control-label" for="groupName">用户组:</label>
 					  <select id="groupName" name="groupName">
+					               <option value="">所有</option>
 								    <#list groups as group>
 									<option value="${group.getGroupName()}"   ${context.seclet(group.getGroupName(),param_groupName)}>${group.getGroupDesc()}</option>
 									</#list>

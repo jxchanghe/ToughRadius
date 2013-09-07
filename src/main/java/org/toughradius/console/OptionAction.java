@@ -26,21 +26,48 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.toughradius.constant;
+package org.toughradius.console;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
-public class OptionNames {
+import org.toughradius.annotation.AuthAdmin;
+import org.toughradius.common.ValidateUtil;
+import org.toughradius.model.RadOption;
+import org.xlightweb.BadMessageException;
+import org.xlightweb.IHttpExchange;
+import org.xlightweb.IHttpRequest;
+import org.xlightweb.Mapping;
+
+@AuthAdmin
+@Mapping( { "/option" })
+public class OptionAction  extends FliterAction {
     
-    public static final StringConst USER_EXPIRED_KEEP = new StringConst("USER_EXPIRED_KEEP","过期帐号保留天数");
-    public static final StringConst USER_EXPORT_ATTRS = new StringConst("USER_EXPORT_ATTRS","用户导出属性集合");
-    
-    public final static List<StringConst> OptionNameList = new ArrayList<StringConst>();
-    
-    static 
-    {
-        OptionNameList.add(USER_EXPIRED_KEEP);
-        OptionNameList.add(USER_EXPORT_ATTRS);
+    public void doGet(IHttpExchange http) throws IOException, BadMessageException {
+        IHttpRequest req = http.getRequest();
+        req.setAttribute("options",baseServ.getOptions());
+        http.send(freemaker.render(http, "option"));
+        
+    }
+
+    public void doPost(IHttpExchange http) throws IOException, BadMessageException {
+        IHttpRequest req = http.getRequest();
+        String oname = req.getParameter("optionName");
+        String ovalue = req.getParameter("optionValue");
+        if(ValidateUtil.isEmpty(oname)||ValidateUtil.isEmpty(ovalue))
+        {
+            http.send(freemaker.renderWithAlert(http, "option","无效的参数值"));
+            return;
+        }
+        
+        RadOption option = baseServ.getOption(oname);
+        if(option==null)
+        {
+            http.send(freemaker.renderWithAlert(http, "option","无效的参数值"));
+            return;
+        }
+        option.setOptionValue(ovalue);
+        baseServ.updateOption(option);
+        http.sendRedirect("/option");
+        
     }
 }

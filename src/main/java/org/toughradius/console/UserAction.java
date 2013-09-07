@@ -130,7 +130,8 @@ public class UserAction extends FliterAction{
             uarray[2] = user.getGroupName();
             
             for (int i = 0; i < attrsLen; i++) {
-                uarray[3+i] = cacheServ.getUserMeta(user.getUserName(), attrs[i]).getValue();
+                RadUserMeta attr = cacheServ.getUserMeta(user.getUserName(), attrs[i]);
+                uarray[3+i] = attr!=null?attr.getValue():"";
             }
             dataList.add(uarray);
         }

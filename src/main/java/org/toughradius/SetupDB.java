@@ -74,7 +74,7 @@ public class SetupDB {
         
         System.out.println("正在创建表");
 
-        String script = FileUtil.readFile("./docs/create.sql", "GBK");
+        String script = FileUtil.readFile("./docs/create.sql", "UTF-8");
         script = script.replaceAll("--.*", "");
         String[] sqls = script.split(";");
         
@@ -100,7 +100,7 @@ public class SetupDB {
         System.out.println("正在导入外部sql:" + sqlfile.getAbsolutePath());
 
         Statement st = conn.createStatement();
-        String sql = FileUtil.readFile(sqlfile.getPath(), "GBK");
+        String sql = FileUtil.readFile(sqlfile.getPath(), "UTF-8");
         if(!"".equals(sql))
         {
             st.execute(sql);

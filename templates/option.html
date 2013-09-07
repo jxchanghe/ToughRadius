@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+   <#include "/header.html" parse=true>
+   <script type="text/javascript">
+
+   </script>
+  </head>
+  <body>
+  <#include "/nav.html" parse=true>
+	<div class="main-box">
+		<div class="container">
+		    <div class="row">
+               <#include "/menu.html" parse=true>
+				<div class="span9">
+					<ul class="breadcrumb">
+						<li><b>系统参数管理</b></li>
+					</ul>
+					
+					<#if alert??>
+					<div class="alert">${alert}</div>
+					</#if>
+					
+					<#list options as option>						
+					<form id=“${option.getOptionName()}_form” class="form-horizontal" action="/option">
+					  <div class="control-group">
+					    <label class="control-label" >${option.getOptionDesc()!!}</label>
+					    <div class="controls">
+					      <input type="text" class="span2" id="optionName" name="optionName" value="${option.getOptionName()}" readonly >
+					      <input type="text" class="span4" id="optionValue" name="optionName" value="${option.getOptionValue()}">
+					      <button type="submit" class="btn">更新</button>
+					     </div>
+					  </div>	
+					  </form>	
+					 </#list>					
+					
+				</div>
+			</div>
+		</div>
+    </div > <!-- /container -->
+  <#include "/footer.html" parse=true>
+  </body>
+</html>
