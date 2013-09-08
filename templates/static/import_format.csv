@@ -1,0 +1,2 @@
+user_name,password,group_name,status,expire,credit,period,bind_mac,concur_number
+test,123456,test,1,2014-01-01,0,08:00-21:00,0,1
