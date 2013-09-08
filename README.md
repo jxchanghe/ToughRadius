@@ -21,62 +21,9 @@ ToughRadius增加了数据库存储支持，通过jdbc驱动支持多种数据�
 
 ToughRadius实现了一个Web管理界面，提供用户管理，用户组管理，客户端管理等功能，支持灵活的属性扩展。
 
-### 版本构建
+### 安装配置
 
-代码库:https://github.com/jamiesun/ToughRadius
-
-二进制版本发布请移步这里：http://pan.baidu.com/share/link?uk=604278103&shareid=1758865663
-
-如果您对java环境下的构建比较了解，可以选择从源码构建：
-
-1. 设置java环境变量。
-
-2. 设置ANT环境变量。
-
-3. 从github克隆或下载ToughRadius最新代码。
-
-4. 执行ant构建自己的ToughRadius发布包。
-
-### 数据库安装
-
-当前ToughRadius内置Hsqldb的支持，ToughRadius提供了一个快捷的初始化脚本来帮助您初始化您的数据库。
-
-linux环境下请执行：setupdb.sh 
-
-windows环境请执行：setupdb.bat
-
-### 运行说明
-
-linux环境下请执行：startup.sh 
-
-windows环境请执行：startup.bat
-
-### 系统运行参数设置
-
-修改conf目录下的system.xml配置文件：
-```
-<?xml version="1.0" encoding="UTF-8" ?>
-<config>
-	<radius>
-		<version>ToughRadius V1.0</version>
-		<authPort>1812</authPort>
-		<acctPort>1813</acctPort>
-		<adminPort>1815</adminPort>
-		<maxSessionTimeout>86400</maxSessionTimeout>
-	</radius>
-	<webapp>
-		<port>8080</port>
-		<maxConn>1024</maxConn>
-	</webapp>
-	<database>
-		<driver>org.hsqldb.jdbc.JDBCDriver</driver>
-		<url>jdbc:hsqldb:./data/radius</url>
-		<username>sa</username>
-		<password></password>
-	</database>	
-</config>
-```
-修改conf目录下的log4j.xml配置文件,在实际生产环境中应该只开启error级别日志。
+请参见 [ToughRadius文档](https://github.com/jamiesun/ToughRadius/tree/master/docs)
 
 ### 开发者和贡献者
 
