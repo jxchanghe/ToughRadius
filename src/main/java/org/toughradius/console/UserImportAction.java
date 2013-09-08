@@ -45,13 +45,12 @@ public class UserImportAction extends FliterAction{
 
 
     public void doGet(IHttpExchange http) throws IOException, BadMessageException {
-        
-        
+        http.send(freemaker.render(http, "import"));
     }
 
     public void doPost(IHttpExchange http) throws IOException, BadMessageException {
 
-        
+        http.send(freemaker.render(http, "import"));
     }
 
 }

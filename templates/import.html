@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+   <#include "/header.html" parse=true>
+   <script type="text/javascript">
+
+   </script>
+  </head>
+  <body>
+  <#include "/nav.html" parse=true>
+	<div class="main-box">
+		<div class="container">
+		    <div class="row">
+               <#include "/menu.html" parse=true>
+				<div class="span9">
+					<ul class="breadcrumb">
+						<li><b>用户管理</b> <span class="divider">/</span></li>
+						<li><a href="/user">用户查询</a><span class="divider">/</span></li>
+						<li><a href="/user?op=add">新增用户</a><span class="divider">/</span></li>
+						<li><a href="/user/import">导入用户</a></li>
+					</ul>
+					
+					<#if alert??>
+					<div class="alert">${alert}</div>
+					</#if>
+										
+				  <form class="form-horizontal" action="/user/import" method="post" enctype="multipart/form-data" >
+				    <fieldset>
+				    <div class="control-group">
+				          <label class="control-label">用户数据文件</label>
+				          <!-- File Upload -->
+				          <div class="controls">
+				            <input class="input-file" name="file" id="fileInput" type="file">
+				          </div>
+				        </div>
+				
+				
+				    <div class="control-group">
+				          <label class="control-label"></label>
+				          <!-- Button -->
+				          <div class="controls">
+				            <button class="btn">立即导入</button>
+				          </div>
+				        </div>
+				
+				    </fieldset>
+				  </form>				
+							<table class="table table-condensed">
+							  <thead>
+							    <tr>
+							      <td colspan="4"> <a href="/static/import_format.csv">下载导入格式模板</a>
+							      建议使用excel生成用户另存为csv数据文件
+							      </td>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr class="success">
+							      <td>用户名[必须]</td>
+							      <td>密码[必须]</td>
+							      <td>用户组[必须]</td>
+							      <td>状态</td>
+							      <td>过期</td>
+							      <td>余额</td>
+							      <td>时段</td>
+							      <td>是否绑定MAC</td>
+							      <td>并发数</td>						      
+							    </tr>								    
+							    <tr class="info">
+							      <td>user_name</td>
+							      <td>password</td>
+							      <td>group_name</td>
+							      <td>status</td>
+							      <td>expire</td>
+							      <td>credit</td>
+							      <td>period</td>
+							      <td>bind_mac</td>
+							      <td>concur_number</td>						      
+							    </tr>							  
+							    <tr class="info">
+							      <td>test</td>
+							      <td>123456</td>
+							      <td>test</td>
+							      <td>1</td>
+							      <td>2014-01-01</td>
+							      <td>0</td>
+							      <td>08:00-21:00</td>
+							      <td>0</td>
+							      <td>1</td>						      
+							    </tr>
+							  </tbody>
+							</table>	
+				</div>
+			</div>
+		</div>
+    </div > <!-- /container -->
+  <#include "/footer.html" parse=true>
+  </body>
+</html>
