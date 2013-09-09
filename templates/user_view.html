@@ -68,8 +68,8 @@
 					  <div class="control-group">
 					    <label class="control-label" for="${meta.getName()}_name">${meta.getMetaDesc()}</label>
 					    <div class="controls">
-					      <input type="text" id="${meta.getName()}_name" name="${meta.getName()}_name" value="${meta.getName()}" placeholder="属性">
-					      <input type="text" id="${meta.getName()}_value" name="${meta.getName()}_value" value="${meta.getValue()}" placeholder="属性值">
+					      <input type="text" class="span2" id="${meta.getName()}_name" name="${meta.getName()}_name" value="${meta.getName()}" placeholder="属性">
+					      <input type="text" class="span2" id="${meta.getName()}_value" name="${meta.getName()}_value" value="${meta.getValue()}" placeholder="属性值">
 					      <a class="btn" href="javascript:updateMeta('${meta.getName()}','${meta.getName()}_value');">更新</a>
 					      <a class="btn" href="/user?op=deleteMeta&userName=${user.getUserName()}&metaName=${meta.getName()}">删除</a>					   
 					    </div>
