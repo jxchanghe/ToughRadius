@@ -39,6 +39,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.picocontainer.Startable;
 import org.toughradius.annotation.Inject;
+import org.toughradius.data.RadClientMapper;
 import org.toughradius.data.RadGroupMapper;
 import org.toughradius.data.RadGroupMetaMapper;
 import org.toughradius.data.RadUserMapper;
@@ -80,16 +81,23 @@ public class CacheService implements Startable {
 
 		SqlSession session = dbservice.openSession();
 		try {
-			RadUserMapper mapper = session.getMapper(RadUserMapper.class);
+		    RadUserMapper mapper = session.getMapper(RadUserMapper.class);
+			RadClientMapper cMapper = session.getMapper(RadClientMapper.class);
 			RadUserMetaMapper umMapper = session.getMapper(RadUserMetaMapper.class);
 			RadGroupMapper gMapper = session.getMapper(RadGroupMapper.class);
 			RadGroupMetaMapper gmMapper = session.getMapper(RadGroupMetaMapper.class);
-			List<RadUser> users = mapper.selectByExample(null);
+			List<RadClient> clients = cMapper.selectByExample(null);
+ 			List<RadUser> users = mapper.selectByExample(null);
 			List<RadUserMeta> userMetas = umMapper.selectByExample(null);
 			List<RadGroup> groups = gMapper.selectByExample(null);
 			List<RadGroupMeta> groupMetas = gmMapper.selectByExample(null);
 
 			synchronized (lock) {
+			    for(RadClient client : clients){
+			        clientCache.put(client.getAddress(), client);
+			    }
+			    log.info("load (" + clientCache.size() + ") client cache data done !");
+			    
 				for (RadUser user : users) {
 					userCache.put(user.getUserName(), user);
 				}
