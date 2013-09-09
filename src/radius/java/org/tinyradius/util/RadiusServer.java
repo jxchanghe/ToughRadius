@@ -48,7 +48,7 @@ public abstract class RadiusServer {
     private List receivedPackets = new LinkedList();
     private long duplicateInterval = 30000; // 30 s
     protected transient boolean closing = false;
-    protected ExecutorService          worker      = Executors.newCachedThreadPool();
+    protected ExecutorService    worker = Executors.newCachedThreadPool();
     private static Log logger = LogFactory.getLog(RadiusServer.class);
     
     public static RadiusStat getStat()
@@ -355,6 +355,7 @@ public abstract class RadiusServer {
 	protected void listen(final DatagramSocket s) {
 		final DatagramPacket packetIn = new DatagramPacket(new byte[RadiusPacket.MAX_PACKET_LENGTH], RadiusPacket.MAX_PACKET_LENGTH);
 		while (true) {
+
 			try {
 				// receive packet
 				try {
@@ -383,10 +384,9 @@ public abstract class RadiusServer {
 						logger.info("ignoring packet from unknown client " + remoteAddress + " received on local address " + localAddress);
 					continue;
 				}
-
+				
 				// parse packet
 				final RadiusPacket request = makeRadiusPacket(packetIn, secret);
-				
 				
 				
 				if (logger.isInfoEnabled())
@@ -395,37 +395,18 @@ public abstract class RadiusServer {
 				// handle packet
 				logger.trace("about to call RadiusServer.handlePacket()");
 				
-		        worker.execute(new Runnable()
-		        {
-		            @Override
-		            public void run()
-		            {
-		                RadiusPacket response;
-                        try
-                        {
-                            response = handlePacket(localAddress, remoteAddress, request, secret);
-                            
-                            // send response
-                            if (response != null) {
-                                if (logger.isInfoEnabled())
-                                    logger.info("send response: " + response);
-                                DatagramPacket packetOut = makeDatagramPacket(response, secret, remoteAddress.getAddress(), packetIn.getPort(), request);
-                                s.send(packetOut);
-                                asyncExecute(request,remoteAddress);
-                            }
-                            else
-                                logger.info("no response sent");
-                        }
-                        catch (RadiusException e)
-                        {
-                            logger.error("malformed Radius packet", e);
-                        }
-                        catch (IOException e)
-                        {
-                            logger.error("communication error", e);
-                        }
-		            }
-		        });
+				RadiusPacket  response = handlePacket(localAddress, remoteAddress, request, secret);
+                // send response
+                if (response != null) {
+                    if (logger.isInfoEnabled())
+                        logger.info("send response: " + response);
+                    DatagramPacket packetOut = makeDatagramPacket(response, secret, remoteAddress.getAddress(), packetIn.getPort(), request);
+                    s.send(packetOut);
+                    asyncExecute(request,remoteAddress);
+                }
+                else
+                    logger.info("no response sent");
+
 			}
 			catch (SocketTimeoutException ste) {
 				// this is expected behaviour
@@ -441,6 +422,7 @@ public abstract class RadiusServer {
 			}
 		}
 	}	
+	
 
 	/**
 	 * Handles the received Radius packet and constructs a response.
