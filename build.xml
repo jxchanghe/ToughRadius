@@ -38,7 +38,7 @@
         <javac debug="on" deprecation="true" srcdir="${classesdir}" destdir="${classesdir}"
         	source="1.6"   fork="true" encoding="utf-8">
             <classpath>
-                <pathelement location="${bindir}"/>
+                <pathelement location="${classesdir}"/>
                 <fileset dir="${libdir}">
                     <include name="**/*.jar"/>
                 </fileset>
