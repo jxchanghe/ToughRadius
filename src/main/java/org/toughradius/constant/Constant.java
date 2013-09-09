@@ -36,7 +36,7 @@ public class Constant
 {
     public static final StringConst USER_EXPIRE = new StringConst("EXPIRE","过期时间(####-##-##)");
     public static final StringConst USER_CREDIT = new StringConst("CREDIT","用户余额（分）");
-    public static final StringConst USER_STATUS = new StringConst("STATUS","状态(0/1/2:未激活/正常/停机)");
+    public static final StringConst USER_STATUS = new StringConst("STATUS","状态(1/2:正常/停机)");
     public static final StringConst USER_PERIOD = new StringConst("PERIOD","上网时段(比如 08:00-21:00)");
     public static final StringConst USER_BIND_MAC = new StringConst("BIND_MAC","绑定MAC地址(0/1:不绑定/绑定)");
     public static final StringConst USER_CONCUR_NUMBER  = new StringConst("CONCUR_NUMBER","并发数（0-20）");

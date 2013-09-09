@@ -43,6 +43,7 @@ import org.toughradius.data.RadGroupMapper;
 import org.toughradius.data.RadGroupMetaMapper;
 import org.toughradius.data.RadUserMapper;
 import org.toughradius.data.RadUserMetaMapper;
+import org.toughradius.model.RadClient;
 import org.toughradius.model.RadGroup;
 import org.toughradius.model.RadGroupMeta;
 import org.toughradius.model.RadGroupMetaExample;
@@ -59,6 +60,7 @@ import org.toughradius.model.RadUserMetaKey;
 public class CacheService implements Startable {
 	private static Log log = LogFactory.getLog(CacheService.class);
 	private Object lock = new Object();
+	private ConcurrentHashMap<String, RadClient> clientCache = new ConcurrentHashMap<String, RadClient>();
 	private ConcurrentHashMap<String, RadUser> userCache = new ConcurrentHashMap<String, RadUser>();
 	private ConcurrentHashMap<String, List<RadUserMeta>> userMetaCache = new ConcurrentHashMap<String, List<RadUserMeta>>();
 	private ConcurrentHashMap<String, RadGroup> groupCache = new ConcurrentHashMap<String, RadGroup>();
@@ -135,12 +137,30 @@ public class CacheService implements Startable {
 	}
 
 	public void reload() {
+	    clientCache.clear();
 		userCache.clear();
 		userMetaCache.clear();
 		groupCache.clear();
 		groupMetaCache.clear();
 		start();
 	}
+	
+	public RadClient getClient(String ipaddr)
+	{
+	    return clientCache.get(ipaddr);
+	}
+	
+    public void updateClient(RadClient client)
+    {
+        if(client==null)
+            return;
+        clientCache.put(client.getAddress(), client);
+    }
+    
+    public RadClient removeClient(String ipaddr)
+    {
+        return clientCache.remove(ipaddr);
+    }
 
 	public List<RadUser> getUsers() {
 		return Collections.unmodifiableList(new ArrayList<RadUser>(userCache.values()));

@@ -45,10 +45,13 @@ public class BaseService
 {
     private static Log logger = LogFactory.getLog(BaseService.class);
     private DBService dbservice;
-    
+    private CacheService cacheService;
     public void setDbservice(DBService dbservice)
     {
         this.dbservice = dbservice;
+    }
+    public void setCacheService(CacheService cacheService) {
+        this.cacheService = cacheService;
     }
     
     /**
@@ -141,6 +144,7 @@ public class BaseService
             RadClientMapper mapper = session.getMapper(RadClientMapper.class);
             mapper.insert(client);
             session.commit();
+            cacheService.updateClient(client);
         }
         finally
         {
@@ -160,6 +164,7 @@ public class BaseService
             RadClientMapper mapper = session.getMapper(RadClientMapper.class);
             mapper.updateByPrimaryKey(client);
             session.commit();
+            cacheService.updateClient(client);
         }
         finally
         {
@@ -181,6 +186,7 @@ public class BaseService
             RadClientMapper mapper = session.getMapper(RadClientMapper.class);
             mapper.deleteByPrimaryKey(address);
             session.commit();
+            cacheService.removeClient(address);
         }
         finally
         {

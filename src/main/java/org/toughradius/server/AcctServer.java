@@ -81,13 +81,13 @@ public class AcctServer extends RadiusServer implements Startable {
 
     @Override
     public String getSharedSecret(InetSocketAddress client) {
-        RadClient rc = Project.getBaseService().getClient(client.getAddress().getHostAddress());
+        RadClient rc = cacheServ.getClient(client.getAddress().getHostAddress());
         return rc != null ? rc.getSecret() : null;
     }
 
     @Override
     public String getUserPassword(String userName) {
-        RadUser user = Project.getUserService().getUser(userName);
+        RadUser user = cacheServ.getUser(userName);
         return user != null ? user.getPassword() : null;
     }
     
