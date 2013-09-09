@@ -55,14 +55,14 @@ public class OptionAction  extends FliterAction {
         String ovalue = req.getParameter("optionValue");
         if(ValidateUtil.isEmpty(oname)||ValidateUtil.isEmpty(ovalue))
         {
-            http.send(freemaker.renderWithAlert(http, "option","无效的参数值"));
+            http.send(freemaker.renderWithAlert(http, "error","无效的参数值"));
             return;
         }
         
         RadOption option = baseServ.getOption(oname);
         if(option==null)
         {
-            http.send(freemaker.renderWithAlert(http, "option","无效的参数值"));
+            http.send(freemaker.renderWithAlert(http, "error","无效的参数值"));
             return;
         }
         option.setOptionValue(ovalue);

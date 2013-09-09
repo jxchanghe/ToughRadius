@@ -37,6 +37,7 @@ import org.toughradius.annotation.AuthAdmin;
 import org.toughradius.common.Config;
 import org.toughradius.components.BaseService;
 import org.toughradius.components.CacheService;
+import org.toughradius.components.DBService;
 import org.toughradius.components.Freemarker;
 import org.toughradius.components.StatService;
 import org.toughradius.components.UserService;
@@ -54,6 +55,7 @@ public abstract class FliterAction implements IHttpRequestHandler{
 	protected UserService userServ;
 	protected StatService statServ;
 	protected CacheService cacheServ;
+	protected DBService dbServ;
 	public void setFreemaker(Freemarker freemaker) {
 		this.freemaker = freemaker;
 	}
@@ -77,6 +79,9 @@ public abstract class FliterAction implements IHttpRequestHandler{
     }
     public void setCacheServ(CacheService cacheServ) {
         this.cacheServ = cacheServ;
+    }
+    public void setDbServ(DBService dbServ) {
+        this.dbServ = dbServ;
     }
     
 	public void onRequest(IHttpExchange http) throws IOException,BadMessageException {

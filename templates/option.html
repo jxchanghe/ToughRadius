@@ -22,12 +22,12 @@
 					</#if>
 					
 					<#list options as option>						
-					<form id=“${option.getOptionName()}_form” class="form-horizontal" action="/option">
+					<form id=“${option.getOptionName()}_form” class="form-horizontal" action="/option" method="post">
 					  <div class="control-group">
 					    <label class="control-label" >${option.getOptionDesc()!!}</label>
 					    <div class="controls">
 					      <input type="text" class="span2" id="optionName" name="optionName" value="${option.getOptionName()}" readonly >
-					      <input type="text" class="span4" id="optionValue" name="optionName" value="${option.getOptionValue()}">
+					      <input type="text" class="span4" id="optionValue" name="optionValue" value="${option.getOptionValue()}">
 					      <button type="submit" class="btn">更新</button>
 					     </div>
 					  </div>	

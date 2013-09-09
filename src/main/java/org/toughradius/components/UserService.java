@@ -108,6 +108,20 @@ public class UserService
             session.close();
         }
     }
+    public List<RadUser> getUsers()
+    {
+        SqlSession session = dbservice.openSession();
+        try
+        {
+            RadUserMapper mapper = session.getMapper(RadUserMapper.class);
+            List<RadUser> users = mapper.selectByExample(null);
+            return users;
+        }
+        finally
+        {
+            session.close();
+        }
+    }
     
     /**
      * 新增用户
@@ -162,7 +176,7 @@ public class UserService
         {
             RadUserMetaMapper mapper = session.getMapper(RadUserMetaMapper.class);
             RadUserMetaExample example = new RadUserMetaExample();
-            example.createCriteria().andNameEqualTo(username);
+            example.createCriteria().andUserNameEqualTo(username);
             mapper.deleteByExample(example);
             
             RadUserMapper mapper2 = session.getMapper(RadUserMapper.class);
@@ -256,7 +270,7 @@ public class UserService
         {
             RadUserMetaMapper mapper = session.getMapper(RadUserMetaMapper.class);
             RadUserMetaExample example = new RadUserMetaExample();
-            example.createCriteria().andNameEqualTo(username);
+            example.createCriteria().andUserNameEqualTo(username);
             mapper.deleteByExample(example);
             session.commit();
             cacheService.removeUserMeta(username);

@@ -6,5 +6,8 @@
 #mbgen.bat
 logs
 bin
-data
+#data
+*.lok
+*.tmp
+bakup
 release
