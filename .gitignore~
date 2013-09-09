@@ -1,0 +1,10 @@
+*.class
+# Package Files #
+*.war
+*.ear
+#generatorConfig.xml
+#mbgen.bat
+logs
+bin
+data
+release
