@@ -54,10 +54,21 @@ import org.xlightweb.Mapping;
 
 public class Project
 {
+    private static Project instance = new Project();
     public static final String LOG4J_FILE = "conf/log4j.xml";
     public static final String CONFIG_FILE = "conf/system.xml";
     private static Log log = LogFactory.getLog(Project.class);
+    private AuthServer authServer;
+    private AcctServer acctServer;
+    private WebServer webServer;
     
+    private Project() {
+    }
+    
+    public static Project getInstance()
+    {
+        return instance;
+    }
     /**
      * 初始化日志环境
      * @return
@@ -111,14 +122,21 @@ public class Project
         }
         Beans.start();
         
-        AuthServer authServer = new AuthServer(Beans.getBean(Config.class));
-        AcctServer acctServer = new AcctServer(Beans.getBean(Config.class));
-        WebServer wserv = new WebServer(Beans.getBean(Config.class), actionSet);
+        authServer = new AuthServer(Beans.getBean(Config.class));
+        acctServer = new AcctServer(Beans.getBean(Config.class));
+        webServer = new WebServer(Beans.getBean(Config.class), actionSet);
        
         authServer.start();
         acctServer.start();
-        wserv.start();
+        webServer.start();
 
+    }
+    
+    public void stop()
+    {
+        authServer.stop();
+        acctServer.stop();
+        webServer.stop();
     }
     
     public static SqlSession getSession()
@@ -154,7 +172,6 @@ public class Project
     
     public static void main(String[] args)
     {
-        Project startup = new Project();
-        startup.start();
+        Project.getInstance().start();
     }
 }

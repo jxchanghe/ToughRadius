@@ -105,7 +105,8 @@ public class WebServer implements Startable
     @Override
     public void stop()
     {
-        
+        log.info("stopping WebServer ...");
+        hsrv.close();
     }
 
 }

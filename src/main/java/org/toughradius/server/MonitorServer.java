@@ -40,6 +40,7 @@ import java.net.UnknownHostException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.picocontainer.Startable;
+import org.toughradius.Project;
 import org.toughradius.annotation.Inject;
 
 
@@ -103,6 +104,7 @@ public class MonitorServer implements Startable
                     {
                         try {socket.close();}catch(Exception e){logger.error(e);}
                         try {serverSocket.close();}catch(Exception e){logger.error(e);}
+                        Project.getInstance().stop();
                         System.exit(0);
                     }
 
