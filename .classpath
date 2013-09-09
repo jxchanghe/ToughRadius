@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="lib/asm-all-3.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/iText-2.1.2u.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

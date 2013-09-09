@@ -314,73 +314,73 @@ public class RadGroupMetaExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("DESC is null");
+        public Criteria andMetaDescIsNull() {
+            addCriterion("META_DESC is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("DESC is not null");
+        public Criteria andMetaDescIsNotNull() {
+            addCriterion("META_DESC is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("DESC =", value, "desc");
+        public Criteria andMetaDescEqualTo(String value) {
+            addCriterion("META_DESC =", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("DESC <>", value, "desc");
+        public Criteria andMetaDescNotEqualTo(String value) {
+            addCriterion("META_DESC <>", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("DESC >", value, "desc");
+        public Criteria andMetaDescGreaterThan(String value) {
+            addCriterion("META_DESC >", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("DESC >=", value, "desc");
+        public Criteria andMetaDescGreaterThanOrEqualTo(String value) {
+            addCriterion("META_DESC >=", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("DESC <", value, "desc");
+        public Criteria andMetaDescLessThan(String value) {
+            addCriterion("META_DESC <", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("DESC <=", value, "desc");
+        public Criteria andMetaDescLessThanOrEqualTo(String value) {
+            addCriterion("META_DESC <=", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("DESC like", value, "desc");
+        public Criteria andMetaDescLike(String value) {
+            addCriterion("META_DESC like", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("DESC not like", value, "desc");
+        public Criteria andMetaDescNotLike(String value) {
+            addCriterion("META_DESC not like", value, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("DESC in", values, "desc");
+        public Criteria andMetaDescIn(List<String> values) {
+            addCriterion("META_DESC in", values, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("DESC not in", values, "desc");
+        public Criteria andMetaDescNotIn(List<String> values) {
+            addCriterion("META_DESC not in", values, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("DESC between", value1, value2, "desc");
+        public Criteria andMetaDescBetween(String value1, String value2) {
+            addCriterion("META_DESC between", value1, value2, "metaDesc");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("DESC not between", value1, value2, "desc");
+        public Criteria andMetaDescNotBetween(String value1, String value2) {
+            addCriterion("META_DESC not between", value1, value2, "metaDesc");
             return (Criteria) this;
         }
     }

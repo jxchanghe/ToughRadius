@@ -189,13 +189,13 @@ public class GroupAction extends FliterAction
             meta.setGroupName(groupName);
             meta.setName(metaName);
             meta.setValue(metaValue);
-            meta.setDesc(Constant.getGroupMetaDesc(metaName));
+            meta.setMetaDesc(Constant.getGroupMetaDesc(metaName));
             userServ.addGroupMeta(meta);
         }
         else
         {
             meta.setValue(metaValue);
-            meta.setDesc(Constant.getGroupMetaDesc(metaName));
+            meta.setMetaDesc(Constant.getGroupMetaDesc(metaName));
             userServ.updateGroupMeta(meta);
             
         }

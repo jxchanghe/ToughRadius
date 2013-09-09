@@ -230,7 +230,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_STATUS.value());
                     meta.setValue(status);
-                    meta.setDesc(Constant.USER_STATUS.desc());
+                    meta.setMetaDesc(Constant.USER_STATUS.desc());
                     rmMapper.insert(meta);
                 }
                 
@@ -241,7 +241,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_EXPIRE.value());
                     meta.setValue(expire);
-                    meta.setDesc(Constant.USER_EXPIRE.desc());
+                    meta.setMetaDesc(Constant.USER_EXPIRE.desc());
                     rmMapper.insert(meta);
                 }
                 
@@ -252,7 +252,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_CREDIT.value());
                     meta.setValue(credit);
-                    meta.setDesc(Constant.USER_CREDIT.desc());
+                    meta.setMetaDesc(Constant.USER_CREDIT.desc());
                     rmMapper.insert(meta);
                 }
                 
@@ -263,7 +263,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_PERIOD.value());
                     meta.setValue(period);
-                    meta.setDesc(Constant.USER_PERIOD.desc());
+                    meta.setMetaDesc(Constant.USER_PERIOD.desc());
                     rmMapper.insert(meta);
                 }
                 
@@ -274,7 +274,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_BIND_MAC.value());
                     meta.setValue(bindMac);
-                    meta.setDesc(Constant.USER_BIND_MAC.desc());
+                    meta.setMetaDesc(Constant.USER_BIND_MAC.desc());
                     rmMapper.insert(meta);
                 }
                 
@@ -285,7 +285,7 @@ public class UserImportAction extends FliterAction{
                     meta.setUserName(userName);
                     meta.setName(Constant.USER_CONCUR_NUMBER.value());
                     meta.setValue(concurNumber);
-                    meta.setDesc(Constant.USER_CONCUR_NUMBER.desc());
+                    meta.setMetaDesc(Constant.USER_CONCUR_NUMBER.desc());
                     rmMapper.insert(meta);
                 }
             }

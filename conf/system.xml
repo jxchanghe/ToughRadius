@@ -11,10 +11,18 @@
 		<port>8080</port>
 		<maxConn>1024</maxConn>
 	</webapp>
+	<!--
 	<database>
 		<driver>org.hsqldb.jdbc.JDBCDriver</driver>
 		<url>jdbc:hsqldb:./data/radius</url>
 		<username>sa</username>
 		<password></password>
 	</database>	
+	-->
+	<database>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<url>jdbc:mysql://192.168.1.253:3306/radius_db?useUnicode=true&amp;characterEncoding=UTF-8</url>
+		<username>root</username>
+		<password>tsroot</password>
+	</database>		
 </config>

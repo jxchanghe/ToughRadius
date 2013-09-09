@@ -5,7 +5,7 @@
     <id column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
     <id column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="VALUE" property="value" jdbcType="VARCHAR" />
-    <result column="DESC" property="desc" jdbcType="VARCHAR" />
+    <result column="META_DESC" property="metaDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    GROUP_NAME, NAME, VALUE, DESC
+    GROUP_NAME, NAME, VALUE, META_DESC
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.toughradius.model.RadGroupMetaExample" >
     select
@@ -102,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="org.toughradius.model.RadGroupMeta" >
     insert into RAD_GROUP_META (GROUP_NAME, NAME, VALUE, 
-      DESC)
+      META_DESC)
     values (#{groupName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{desc,jdbcType=VARCHAR})
+      #{metaDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.toughradius.model.RadGroupMeta" >
     insert into RAD_GROUP_META
@@ -118,8 +118,8 @@
       <if test="value != null" >
         VALUE,
       </if>
-      <if test="desc != null" >
-        DESC,
+      <if test="metaDesc != null" >
+        META_DESC,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -132,8 +132,8 @@
       <if test="value != null" >
         #{value,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
+      <if test="metaDesc != null" >
+        #{metaDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -155,8 +155,8 @@
       <if test="record.value != null" >
         VALUE = #{record.value,jdbcType=VARCHAR},
       </if>
-      <if test="record.desc != null" >
-        DESC = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.metaDesc != null" >
+        META_DESC = #{record.metaDesc,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -168,7 +168,7 @@
     set GROUP_NAME = #{record.groupName,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       VALUE = #{record.value,jdbcType=VARCHAR},
-      DESC = #{record.desc,jdbcType=VARCHAR}
+      META_DESC = #{record.metaDesc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -179,8 +179,8 @@
       <if test="value != null" >
         VALUE = #{value,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null" >
-        DESC = #{desc,jdbcType=VARCHAR},
+      <if test="metaDesc != null" >
+        META_DESC = #{metaDesc,jdbcType=VARCHAR},
       </if>
     </set>
     where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
@@ -189,7 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="org.toughradius.model.RadGroupMeta" >
     update RAD_GROUP_META
     set VALUE = #{value,jdbcType=VARCHAR},
-      DESC = #{desc,jdbcType=VARCHAR}
+      META_DESC = #{metaDesc,jdbcType=VARCHAR}
     where GROUP_NAME = #{groupName,jdbcType=VARCHAR}
       and NAME = #{name,jdbcType=VARCHAR}
   </update>

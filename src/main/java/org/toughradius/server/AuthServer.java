@@ -260,7 +260,7 @@ public class AuthServer extends RadiusServer implements Startable {
             if (userMac == null) {
                 userMac = new RadUserMeta();
                 userMac.setName(Constant.USER_MAC_ADDR.value());
-                userMac.setDesc(Constant.USER_MAC_ADDR.desc());
+                userMac.setMetaDesc(Constant.USER_MAC_ADDR.desc());
                 userMac.setUserName(user.getUserName());
                 userMac.setValue(macaddr);
                 userServ.addUserMeta(userMac);

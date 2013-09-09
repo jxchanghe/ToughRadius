@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class RadGroupMeta extends RadGroupMetaKey implements Serializable {
     private String value;
 
-    private String desc;
+    private String metaDesc;
 
     private static final long serialVersionUID = 1L;
 
@@ -17,12 +17,12 @@ public class RadGroupMeta extends RadGroupMetaKey implements Serializable {
         this.value = value;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getMetaDesc() {
+        return metaDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setMetaDesc(String metaDesc) {
+        this.metaDesc = metaDesc;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class RadGroupMeta extends RadGroupMetaKey implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", value=").append(value);
-        sb.append(", desc=").append(desc);
+        sb.append(", metaDesc=").append(metaDesc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
