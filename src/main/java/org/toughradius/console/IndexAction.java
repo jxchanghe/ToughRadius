@@ -48,6 +48,7 @@ public class IndexAction extends FliterAction{
 	public void doGet(IHttpExchange http) throws IOException,BadMessageException {
 	    IHttpRequest req = http.getRequest();
 	    req.setAttribute("onlineNum",String.valueOf( statServ.countAllOnline(null)));
+	    req.setAttribute("userTotal", userServ.countUsers(null));
 	    req.setAttribute("radius",Project.getRadiusStat());
 		http.send(freemaker.render(http, "index"));
 	}

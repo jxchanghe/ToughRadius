@@ -61,6 +61,7 @@ public class UserAction extends FliterAction{
 	    IHttpRequest request = http.getRequest();
 	    String userName = request.getParameter("userName");
 	    String groupName = request.getParameter("groupName");
+	    int page = request.getIntParameter("page", 1);   
 	    
 	    RadUserExample example = new RadUserExample();
 	    Criteria query = example.createCriteria();
@@ -73,7 +74,8 @@ public class UserAction extends FliterAction{
             query.andGroupNameEqualTo(groupName);
         }
 	    List<RadGroup> groups = userServ.getGroups();
-	    List<RadUser> users = userServ.getUsers(example, new RowBounds(0,100));
+	    List<RadUser> users = userServ.getUsers(example, new RowBounds((page-1)*PAGE_SIZE,PAGE_SIZE));
+	    setPageData(request,page,users.size());
 	    request.setAttribute("groups", groups);
 	    request.setAttribute("users", users);
 		http.send(freemaker.render(http, "user"));
