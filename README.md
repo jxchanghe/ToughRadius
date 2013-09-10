@@ -3,7 +3,7 @@ ToughRadius
 
 ### ToughRadius 介绍
 
-ToughRadius 是基于开源TinyRadius开发的一个支持Radius服务器。
+ToughRadius 是基于开源TinyRadius开发的一个Radius服务器。
 
 ToughRadius支持灵活的属性扩展，可以支持多种接入设备。
 
