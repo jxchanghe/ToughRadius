@@ -21,7 +21,7 @@
 	-->
 	<database>
 		<driver>com.mysql.jdbc.Driver</driver>
-		<url>jdbc:mysql://192.168.1.253:3306/radius_db?useUnicode=true&amp;characterEncoding=UTF-8</url>
+		<url>jdbc:mysql://127.0.0.1:3306/radius_db?useUnicode=true&amp;characterEncoding=UTF-8</url>
 		<username>root</username>
 		<password>tsroot</password>
 	</database>		
