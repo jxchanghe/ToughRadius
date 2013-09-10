@@ -49,6 +49,7 @@ import org.xlightweb.IHttpSession;
 
 public abstract class FliterAction implements IHttpRequestHandler{
     private final static Log log = LogFactory.getLog(FliterAction.class);
+    protected final static int PAGE_SIZE = 10;
     protected Freemarker freemaker;
     protected Config config;
 	protected BaseService baseServ;
@@ -83,6 +84,16 @@ public abstract class FliterAction implements IHttpRequestHandler{
     public void setDbServ(DBService dbServ) {
         this.dbServ = dbServ;
     }
+    
+    protected void setPageData(IHttpRequest request,int page,int dataSize) {
+        
+        if (dataSize == (page * PAGE_SIZE))
+            request.setAttribute("next", page + 1);
+        
+        if (page > 1)
+           request.setAttribute("prev", page - 1);  
+    }
+    
     
 	public void onRequest(IHttpExchange http) throws IOException,BadMessageException {
 

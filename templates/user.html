@@ -43,12 +43,12 @@
 					  <button type="submit" class="btn">查询</button>
 					   <a class="btn" onclick="exportUser();">导出</a>
 					</form>
-					<table class="table table-striped ">
+					<table class="table table-striped table-bordered table-hover">
 					  <thead>
 							<tr>
-								<td>用户名</td>
-								<td>用户组</td>
-								<td>操作</td>
+								<th>用户名</th>
+								<th>用户组</th>
+								<th>操作</th>
 							</tr>			
 						</thead>		
 						<tbody>
@@ -65,6 +65,18 @@
 							</#list>
 						</tbody>
 					</table>
+					
+					<#if prev?? ||  next??>
+                        <ul class="pager">
+                        <#if prev??>
+                        <li> <a href="/user?page=${prev}">上一页</a></li>
+                        </#if>
+                        <#if next??>
+                        <li><a href="/user?page=${next}">下一页</a></li>
+                        </#if>
+                        </ul>
+                    </#if>              
+					
 				</div>
 			</div>
 		</div>

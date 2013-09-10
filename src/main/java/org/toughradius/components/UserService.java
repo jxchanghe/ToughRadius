@@ -69,6 +69,20 @@ public class UserService
         this.cacheService = cacheService;
     }
     
+    public int countUsers(RadUserExample example)
+    {
+        SqlSession session = dbservice.openSession();
+        try
+        {
+            RadUserMapper mapper = session.getMapper(RadUserMapper.class);
+            return mapper.countByExample(example);
+        }
+        finally
+        {
+            session.close();
+        }
+    }
+    
     /**
      * 查询单个用户
      * @param username

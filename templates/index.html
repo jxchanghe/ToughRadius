@@ -14,7 +14,7 @@
 						<li>欢迎登陆系统 【${session.getAttribute("login")}】<span class="divider">/</span> 现在是 ${context.getDateTime()} </li>
 					</ul>
 						
-						<table class="table table-striped " >
+						<table class="table  table-bordered table-striped " >
 						 <thead>
 						    <tr>
 						      <th>系统信息</th>
@@ -35,7 +35,7 @@
 						      <td>最后登录时间：</td>
 						      <td>${session.getAttribute("lastLogin")}</td>
 						      <td>当前在线：</td>
-						      <td>${onlineNum!!}</td>
+						      <td>${onlineNum!!}/${userTotal}</td>
 						    </tr>
 						    </tbody>
 						</table>		
