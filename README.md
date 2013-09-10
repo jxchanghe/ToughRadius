@@ -1,11 +1,6 @@
 ToughRadius
 ===========
 
-### 版本发布
-
-[ToughRadius 百度网盘镜像](http://pan.baidu.com/share/link?uk=604278103&shareid=1758865663)
-
-
 ### ToughRadius 介绍
 
 ToughRadius 是基于开源TinyRadius开发的一个支持Radius服务器。
@@ -22,6 +17,10 @@ ToughRadius实现了一个Web管理界面，提供用户管理，用户组管理
 ### 项目文档
 
 请参见 [ToughRadius文档](http://toughradius.readthedocs.org/en/latest/)
+
+### 版本发布
+
+[ToughRadius 百度网盘镜像](http://pan.baidu.com/share/link?uk=604278103&shareid=1758865663)
 
 
 ### 问题反馈
