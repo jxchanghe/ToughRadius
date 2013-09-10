@@ -48,15 +48,15 @@ import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-import com.lowagie.text.Cell;
-import com.lowagie.text.Document;
-import com.lowagie.text.Font;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.BaseFont;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
+//import com.lowagie.text.Cell;
+//import com.lowagie.text.Document;
+//import com.lowagie.text.Font;
+//import com.lowagie.text.PageSize;
+//import com.lowagie.text.Paragraph;
+//import com.lowagie.text.pdf.BaseFont;
+//import com.lowagie.text.pdf.PdfPCell;
+//import com.lowagie.text.pdf.PdfPTable;
+//import com.lowagie.text.pdf.PdfWriter;
 
 /**
  * 报表导出工具类
@@ -179,10 +179,10 @@ public class ExportUtil {
      * @param footer 标脚,为导出提供说明
      * @throws Exception
      */
-    public static void exportPdf(IHttpExchange http,String fileName, String title, String[] header, int[] widths, List<String[]> dataList, String footer) throws Exception
-    {
-        exportPdf(http, fileName, title, header, widths, dataList, footer, false, false);//默认A4,纵向
-    }
+//    public static void exportPdf(IHttpExchange http,String fileName, String title, String[] header, int[] widths, List<String[]> dataList, String footer) throws Exception
+//    {
+//        exportPdf(http, fileName, title, header, widths, dataList, footer, false, false);//默认A4,纵向
+//    }
     
     /**
      * 导出PDF，需提供是否A3/A4，是否横纵向
@@ -198,99 +198,99 @@ public class ExportUtil {
      * @param isHorizontal 是否横向,=true表示横向，=false表示纵向
      * @throws Exception
      */
-    public static void exportPdf(IHttpExchange http,String fileName, String title, String[] header, int[] widths, List<String[]> dataList, String footer, boolean isA3, boolean isHorizontal) throws Exception
-    {
-        BodyDataSink sink = null;
-        ByteArrayOutputStream os = null;
-        try {
-            HttpResponseHeader headers = new HttpResponseHeader("application/pdf,charset=GBK");
-            headers.addHeader("Content-Disposition","attachment;filename="+fileName);
-            sink = http.send(headers);
-            
-            Document document = new Document();  
-            if (isA3)
-                document.setPageSize(PageSize.A3);
-            else
-                document.setPageSize(PageSize.A4);
-            
-            if (isHorizontal)
-                document.setPageSize(document.getPageSize().rotate());
-            
-            PdfWriter.getInstance(document,os);
-            document.open(); 
-            
-            //中文
-            BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED); 
-            Font FontChinese = new Font(bfChinese, 12, Font.NORMAL); 
-            //英文
-            BaseFont bfen = BaseFont.createFont(); 
-            Font Fonten = new Font(bfen, 12, Font.NORMAL); 
-
-
-            Font fTitle = new Font(bfChinese, 16, Font.BOLD); 
-            Paragraph pTitle = new Paragraph(title, fTitle);
-            pTitle.setSpacingAfter(18);
-            pTitle.setAlignment(Paragraph.ALIGN_CENTER);
-            document.add(pTitle);
-            
-            PdfPTable  table = new PdfPTable (header.length);
-            table.setWidthPercentage(100);//占页面百分率
-            table.setWidths(widths);
-
-            
-            //表头
-            for (int i = 0; i < header.length; i++)
-            {
-                String [] heards = header;
-                PdfPCell hcell = new PdfPCell(new Paragraph(heards[i],FontChinese)); 
-                hcell.setVerticalAlignment(Cell.ALIGN_MIDDLE);
-                hcell.setGrayFill(0.75f);
-                hcell.setPadding(3f);
-                hcell.setNoWrap(false);
-                table.addCell(hcell); 
-            }
-            
-            //数据
-            if (dataList != null)
-            {
-                int n = dataList.size();
-                for (int i = 0; i < n; i++)
-                {
-                    String[] dcol = (String[]) dataList.get(i);
-                    for (int j = 0; j < dcol.length; j++)
-                    {
-                        if(dcol[j]==null)
-                            dcol[j]="";
-                        PdfPCell dcell = null;
-                        if(dcol[j].getBytes().length>dcol[j].length())
-                            dcell= new PdfPCell(new Paragraph(dcol[j],FontChinese)); 
-                        else
-                            dcell= new PdfPCell(new Paragraph(dcol[j],Fonten)); 
-                        dcell.setPadding(3f);
-                        dcell.setNoWrap(false);
-                        table.addCell(dcell); 
-                    }
-
-                }
-            }
-            
-            //页脚
-            if (footer != null)
-            {
-                PdfPCell fcell = new PdfPCell(new Paragraph(footer, FontChinese));
-                fcell.setColspan(header.length);
-                fcell.setPadding(3f);
-                fcell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                table.addCell(fcell);
-            }
-            document.add(table);
-
-            document.close(); 
-            sink.transferFrom(new ByteArrayInputStream(os.toByteArray()));
-        }
-        finally{
-            if (os != null) os.close();
-            if (sink != null) sink.close();
-        }
-    }
+//    public static void exportPdf(IHttpExchange http,String fileName, String title, String[] header, int[] widths, List<String[]> dataList, String footer, boolean isA3, boolean isHorizontal) throws Exception
+//    {
+//        BodyDataSink sink = null;
+//        ByteArrayOutputStream os = null;
+//        try {
+//            HttpResponseHeader headers = new HttpResponseHeader("application/pdf,charset=GBK");
+//            headers.addHeader("Content-Disposition","attachment;filename="+fileName);
+//            sink = http.send(headers);
+//            
+//            Document document = new Document();  
+//            if (isA3)
+//                document.setPageSize(PageSize.A3);
+//            else
+//                document.setPageSize(PageSize.A4);
+//            
+//            if (isHorizontal)
+//                document.setPageSize(document.getPageSize().rotate());
+//            
+//            PdfWriter.getInstance(document,os);
+//            document.open(); 
+//            
+//            //中文
+//            BaseFont bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED); 
+//            Font FontChinese = new Font(bfChinese, 12, Font.NORMAL); 
+//            //英文
+//            BaseFont bfen = BaseFont.createFont(); 
+//            Font Fonten = new Font(bfen, 12, Font.NORMAL); 
+//
+//
+//            Font fTitle = new Font(bfChinese, 16, Font.BOLD); 
+//            Paragraph pTitle = new Paragraph(title, fTitle);
+//            pTitle.setSpacingAfter(18);
+//            pTitle.setAlignment(Paragraph.ALIGN_CENTER);
+//            document.add(pTitle);
+//            
+//            PdfPTable  table = new PdfPTable (header.length);
+//            table.setWidthPercentage(100);//占页面百分率
+//            table.setWidths(widths);
+//
+//            
+//            //表头
+//            for (int i = 0; i < header.length; i++)
+//            {
+//                String [] heards = header;
+//                PdfPCell hcell = new PdfPCell(new Paragraph(heards[i],FontChinese)); 
+//                hcell.setVerticalAlignment(Cell.ALIGN_MIDDLE);
+//                hcell.setGrayFill(0.75f);
+//                hcell.setPadding(3f);
+//                hcell.setNoWrap(false);
+//                table.addCell(hcell); 
+//            }
+//            
+//            //数据
+//            if (dataList != null)
+//            {
+//                int n = dataList.size();
+//                for (int i = 0; i < n; i++)
+//                {
+//                    String[] dcol = (String[]) dataList.get(i);
+//                    for (int j = 0; j < dcol.length; j++)
+//                    {
+//                        if(dcol[j]==null)
+//                            dcol[j]="";
+//                        PdfPCell dcell = null;
+//                        if(dcol[j].getBytes().length>dcol[j].length())
+//                            dcell= new PdfPCell(new Paragraph(dcol[j],FontChinese)); 
+//                        else
+//                            dcell= new PdfPCell(new Paragraph(dcol[j],Fonten)); 
+//                        dcell.setPadding(3f);
+//                        dcell.setNoWrap(false);
+//                        table.addCell(dcell); 
+//                    }
+//
+//                }
+//            }
+//            
+//            //页脚
+//            if (footer != null)
+//            {
+//                PdfPCell fcell = new PdfPCell(new Paragraph(footer, FontChinese));
+//                fcell.setColspan(header.length);
+//                fcell.setPadding(3f);
+//                fcell.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+//                table.addCell(fcell);
+//            }
+//            document.add(table);
+//
+//            document.close(); 
+//            sink.transferFrom(new ByteArrayInputStream(os.toByteArray()));
+//        }
+//        finally{
+//            if (os != null) os.close();
+//            if (sink != null) sink.close();
+//        }
+//    }
 }
